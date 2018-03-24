@@ -1,7 +1,7 @@
 
 # coding: utf-8
-
-# # Research
+# 
+# # Research Summary
 # 
 # The Iris flower data set or Fisher's Iris data set is a multivariate data set introduced by the British statistician and biologist Ronald Fisher in his 1936 paper "The use of multiple measurements in taxonomic problems" as an example of linear discriminant analysis.
 # This famous iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
@@ -44,6 +44,32 @@ iris_data.columns = ['sepal_length', 'sepal_width' , 'petal_length', 'petal_widt
 iris_data.head()
 
 
+# # Investigating the data: Min, Max, Mean, Median and Standard Deviation
+# Get the minimum value of all the column in python pandas
+# 
+
+# In[45]:
+
+
+iris_data.min()
+
+
+# Get the maximum value of all the column in python pandas
+
+# In[46]:
+
+
+iris_data.max()
+
+
+# Get the mean value of all the column in python pandas
+
+# In[47]:
+
+
+iris_data.mean()
+
+
 # In[40]:
 
 
@@ -65,3 +91,8 @@ p.circle(iris_data["petal_length"], iris_data["petal_width"],
 
 show(p)
 
+
+# # References
+# min value
+# http://www.datasciencemadesimple.com/get-minimum-value-column-python-pandas/
+# 
