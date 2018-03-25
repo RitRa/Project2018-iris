@@ -45,7 +45,7 @@ iris_data.columns = ['sepal_length', 'sepal_width' , 'petal_length', 'petal_widt
 iris_data.head()
 
 
-# Shape of the table
+# Discovering the Shape of the table
 
 # In[68]:
 
@@ -98,7 +98,7 @@ iris_data.std()
 
 
 # # Calculate the summary statistics in a different way
-# DataFrame.describe:Generates descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding NaN values.
+# DataFrame.describe: Generates descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding NaN values.
 # 
 # R has a faster way of getting the data with summary
 # 
@@ -112,9 +112,13 @@ summary.head()
 
 
 # # Boxplot
-# Comparing Sepal Length, Sepal Width, Petal Length, Petal Width 
+# Comparing the distributions of:
+# - Sepal Length
+# - Sepal Width
+# - Petal Length
+# - Petal Width 
 
-# In[100]:
+# In[109]:
 
 
 title = "Compare the distributions of Sepal Length"
@@ -176,26 +180,26 @@ boxwhisker(plot=plot_opts, style=style)
 
 
 
-# In[80]:
+# # Comparing the Petal Width and Petal Length across the different Species 
+
+# In[128]:
 
 
+from bokeh.plotting import figure
 
+color1 = '#fcc5c0'
+color2 = '#f768a1'
+color3 = '#7a0177'
 
-
-# In[71]:
-
-
-from bokeh.plotting import figure, show
 
 #adding colors
-colormap = {'Iris-setosa': 'red', 'Iris-versicolor': 'green', 'Iris-virginica': 'blue'}
+colormap = {'Iris-setosa': color1, 'Iris-versicolor': color2, 'Iris-virginica': color3}
 colors = [colormap[x] for x in iris_data['species']]
 
 #adding labels
-p = figure(title = "Iris Morphology")
+p = figure(title = "Petal Width and Petal Length")
 p.xaxis.axis_label = 'Petal Length'
 p.yaxis.axis_label = 'Petal Width'
-
 
 p.circle(iris_data["petal_length"], iris_data["petal_width"],
          color=colors, fill_alpha=0.2, size=10)
@@ -204,11 +208,40 @@ p.circle(iris_data["petal_length"], iris_data["petal_width"],
 show(p)
 
 
+# # Comparing the Sepal Width and Sepal Length across the different Species 
+
+# In[127]:
+
+
+from bokeh.plotting import figure
+
+#adding colors
+colormap = {'Iris-setosa': 'red', 'Iris-versicolor': 'green', 'Iris-virginica': 'blue'}
+colors = [colormap[x] for x in iris_data['species']]
+
+#adding labels
+p = figure(title = "Sepal Width and Sepal Length")
+p.xaxis.axis_label = 'Sepal Length'
+p.yaxis.axis_label = 'Sepal Width'
+
+
+p.circle(iris_data["sepal_length"], iris_data["sepal_width"],
+         color=colors, fill_alpha=0.2, size=10)
+
+
+show(p)
+
+
 # # References
+# Background info
 # https://en.wikipedia.org/wiki/Iris_flower_data_set
 # https://archive.ics.uci.edu/ml/datasets/iris
 # 
+# 
+# Summary values
 # https://stackoverflow.com/questions/33889310/r-summary-equivalent-in-numpy
+# 
+# R iris project
 # https://rstudio-pubs-static.s3.amazonaws.com/205883_b658730c12d14aa6996fe2f6c612c65f.html
 # 
 # min value
