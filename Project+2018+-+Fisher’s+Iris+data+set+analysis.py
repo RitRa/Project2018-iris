@@ -174,10 +174,14 @@ boxwhisker(plot=plot_opts, style=style)
 # As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
 # 
 
-# In[75]:
+# In[141]:
 
 
+import matplotlib.pyplot as plt
+data = iris_data
 
+data.hist()
+plt.show()
 
 
 # # Comparing the Petal Width and Petal Length across the different Species 
