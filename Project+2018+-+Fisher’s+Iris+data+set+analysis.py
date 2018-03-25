@@ -111,6 +111,61 @@ summary = summary.transpose()
 summary.head()
 
 
+# # Boxplot
+# Comparing Sepal Length, Sepal Width, Petal Length, Petal Width 
+
+# In[100]:
+
+
+title = "Compare the distributions of Sepal Length"
+
+boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'sepal_length', label=title)
+
+plot_opts = dict(show_legend=False, width=400)
+style = dict(color='species')
+
+boxwhisker(plot=plot_opts, style=style)
+
+
+# In[101]:
+
+
+title = "Compare the distributions of Sepal Width"
+
+boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'sepal_width', label=title)
+
+plot_opts = dict(show_legend=False, width=400)
+style = dict(color='species')
+
+boxwhisker(plot=plot_opts, style=style)
+
+
+# In[102]:
+
+
+title = "Compare the distributions of Petal Length"
+
+boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'petal_length', label=title)
+
+plot_opts = dict(show_legend=False, width=400)
+style = dict(color='species')
+
+boxwhisker(plot=plot_opts, style=style)
+
+
+# In[103]:
+
+
+title = "Compare the distributions of Petal Width"
+
+boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'petal_width', label=title)
+
+plot_opts = dict(show_legend=False, width=400)
+style = dict(color='species')
+
+boxwhisker(plot=plot_opts, style=style)
+
+
 # # Histogram
 # As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
 # 
@@ -161,4 +216,5 @@ show(p)
 # 
 # Docs
 # https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
+# http://holoviews.org/gallery/demos/bokeh/boxplot_chart.html
 # 
