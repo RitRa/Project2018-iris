@@ -22,8 +22,9 @@
 # Pandas is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools.
 # NumPy is the fundamental package for scientific computing with Python
 # HoloViews is an open-source Python library designed to make data analysis and visualization seamless and simple.
+# I am using the Jupyter Notebook for this project.
 
-# In[66]:
+# In[189]:
 
 
 import pandas as pd
@@ -35,7 +36,7 @@ hv.extension('bokeh', 'matplotlib')
 # # Data
 # Import the iris.csv using the panda library and examine first few rows of data
 
-# In[81]:
+# In[163]:
 
 
 iris_data = pd.read_csv('assets/iris.csv')
@@ -45,9 +46,9 @@ iris_data.columns = ['sepal_length', 'sepal_width' , 'petal_length', 'petal_widt
 iris_data.head()
 
 
-# Discovering the Shape of the table
+# # Discovering the Shape of the table
 
-# In[68]:
+# In[164]:
 
 
 iris_data.shape
@@ -57,7 +58,7 @@ iris_data.shape
 # Get the minimum value of all the column in python pandas
 # 
 
-# In[69]:
+# In[165]:
 
 
 iris_data.min()
@@ -65,7 +66,7 @@ iris_data.min()
 
 # Get the maximum value of all the column in python pandas
 
-# In[51]:
+# In[166]:
 
 
 iris_data.max()
@@ -75,7 +76,7 @@ iris_data.max()
 # 
 # Get the mean value of all the column in python pandas
 
-# In[47]:
+# In[167]:
 
 
 iris_data.mean()
@@ -83,7 +84,7 @@ iris_data.mean()
 
 # Get the median value of all the column in python pandas
 
-# In[49]:
+# In[168]:
 
 
 iris_data.median()
@@ -91,19 +92,19 @@ iris_data.median()
 
 # Get the standard deviation value of all the column in python pandas
 
-# In[50]:
+# In[169]:
 
 
 iris_data.std()
 
 
-# # Calculate the summary statistics in a different way
+# # Presenting the summary statistics a more readable way
 # DataFrame.describe: Generates descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding NaN values.
 # 
 # R has a faster way of getting the data with summary
 # 
 
-# In[90]:
+# In[170]:
 
 
 summary = iris_data.describe()
@@ -111,14 +112,18 @@ summary = summary.transpose()
 summary.head()
 
 
+# From the above summary, we can see there is  huge range in the size of the Sepal Length and Petal Length. We will use a scatter plot to see if the size is related to the species of irish.
+
 # # Boxplot
 # Comparing the distributions of:
 # - Sepal Length
 # - Sepal Width
 # - Petal Length
 # - Petal Width 
+# 
+# This should give us a clearer picture in the differences between the species.
 
-# In[109]:
+# In[171]:
 
 
 title = "Compare the distributions of Sepal Length"
@@ -131,7 +136,7 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[101]:
+# In[172]:
 
 
 title = "Compare the distributions of Sepal Width"
@@ -144,7 +149,7 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[102]:
+# In[173]:
 
 
 title = "Compare the distributions of Petal Length"
@@ -157,7 +162,7 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[103]:
+# In[174]:
 
 
 title = "Compare the distributions of Petal Width"
@@ -174,26 +179,43 @@ boxwhisker(plot=plot_opts, style=style)
 # As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
 # 
 
-# In[141]:
+# In[176]:
 
 
 import matplotlib.pyplot as plt
+
 data = iris_data
 
-data.hist()
+data.hist(figsize=(10, 10))
 plt.show()
 
 
-# # Comparing the Petal Width and Petal Length across the different Species 
-
-# In[128]:
+# In[202]:
 
 
-from bokeh.plotting import figure
+from pandas.plotting import scatter_matrix
+
+data = iris_data
 
 color1 = '#fcc5c0'
 color2 = '#f768a1'
 color3 = '#7a0177'
+
+colormap = {'Iris-setosa': color1, 'Iris-versicolor': color2, 'Iris-virginica': color3}
+colors = [colormap[x] for x in iris_data['species']]
+
+scatter_matrix(data, alpha=0.5, color=colors, figsize=(10, 10))
+
+plt.show()
+
+
+# # Comparing the Petal Width and Petal Length across the different Species 
+# Using different colours it is clear that the three species have very different petal sizes.
+
+# In[204]:
+
+
+from bokeh.plotting import figure
 
 
 #adding colors
@@ -204,6 +226,30 @@ colors = [colormap[x] for x in iris_data['species']]
 p = figure(title = "Petal Width and Petal Length")
 p.xaxis.axis_label = 'Petal Length'
 p.yaxis.axis_label = 'Petal Width'
+p.legend
+
+p.diamond(iris_data["petal_length"], iris_data["petal_width"],color=colors, fill_alpha=0.2, size=10)
+
+
+show(p)
+
+
+# # Comparing the Petal Width and Petal Length across the different Species 
+
+# In[203]:
+
+
+from bokeh.plotting import figure
+
+#adding colors
+colormap = {'Iris-setosa': color1, 'Iris-versicolor': color2, 'Iris-virginica': color3}
+colors = [colormap[x] for x in iris_data['species']]
+
+#adding labels
+p = figure(title = "Petal Width and Petal Length")
+p.xaxis.axis_label = 'Petal Length'
+p.yaxis.axis_label = 'Petal Width'
+
 
 p.circle(iris_data["petal_length"], iris_data["petal_width"],
          color=colors, fill_alpha=0.2, size=10)
@@ -212,27 +258,47 @@ p.circle(iris_data["petal_length"], iris_data["petal_width"],
 show(p)
 
 
-# # Comparing the Sepal Width and Sepal Length across the different Species 
+# In[185]:
 
-# In[127]:
+
+hv.help(hv.Histogram)
+
+
+# In[205]:
 
 
 from bokeh.plotting import figure
 
-#adding colors
-colormap = {'Iris-setosa': 'red', 'Iris-versicolor': 'green', 'Iris-virginica': 'blue'}
-colors = [colormap[x] for x in iris_data['species']]
 
-#adding labels
-p = figure(title = "Sepal Width and Sepal Length")
-p.xaxis.axis_label = 'Sepal Length'
-p.yaxis.axis_label = 'Sepal Width'
+hist, edges = np.histogram(iris_data, density=True, bins=50)
 
 
-p.circle(iris_data["sepal_length"], iris_data["sepal_width"],
-         color=colors, fill_alpha=0.2, size=10)
+
+p = figure()
+p.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], line_color="white")
+
+output_file("hist.html")
+show(p)
 
 
+
+
+# In[199]:
+
+
+import numpy as np
+from bokeh.io import show, output_file
+from bokeh.plotting import figure
+
+data = np.random.normal(0, 0.5, 1000)
+hist, edges = np.histogram(data, density=True, bins=50)
+
+x = np.linspace(-2, 2, 1000)
+
+p = figure()
+p.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], line_color="white")
+
+output_file("hist.html")
 show(p)
 
 
@@ -247,6 +313,9 @@ show(p)
 # 
 # R iris project
 # https://rstudio-pubs-static.s3.amazonaws.com/205883_b658730c12d14aa6996fe2f6c612c65f.html
+# 
+# python iris project
+# https://rajritvikblog.wordpress.com/2017/06/29/iris-dataset-analysis-python/
 # 
 # min value
 # http://www.datasciencemadesimple.com/get-minimum-value-column-python-pandas/
