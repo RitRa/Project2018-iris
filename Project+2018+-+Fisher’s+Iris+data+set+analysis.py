@@ -36,14 +36,15 @@ hv.extension('bokeh', 'matplotlib')
 # # Data
 # Import the iris.csv using the panda library and examine first few rows of data
 
-# In[212]:
+# In[315]:
 
 
 iris_data = pd.read_csv('assets/iris.csv')
 
 iris_data.columns = ['sepal_length', 'sepal_width' , 'petal_length', 'petal_width', 'species']
 
-iris_data.head()
+#you can specific the number to show here
+iris_data.head(10)
 
 
 # # Discovering the Shape of the table
@@ -52,6 +53,20 @@ iris_data.head()
 
 
 iris_data.shape
+
+
+# # Find out unique classification/type of iris flower and the amount
+
+# In[310]:
+
+
+iris_data['species'].unique()
+
+
+# In[313]:
+
+
+print(iris_data.groupby('species').size())
 
 
 # # Investigating the data: Min, Max, Mean, Median and Standard Deviation
@@ -189,7 +204,7 @@ boxwhisker(plot=plot_opts, style=style)
 # As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
 # 
 
-# In[287]:
+# In[320]:
 
 
 import numpy as np
@@ -359,6 +374,9 @@ show(p)
 # http://www.scipy-lectures.org/packages/scikit-learn/auto_examples/plot_iris_scatter.html
 # Statistics in Python
 # http://www.scipy-lectures.org/packages/statistics/index.html#statistics
+# 
+# Python - IRIS Data visualization and explanation
+# https://www.kaggle.com/abhishekkrg/python-iris-data-visualization-and-explanation
 # 
 # Docs
 # https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
