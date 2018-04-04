@@ -204,66 +204,14 @@ boxwhisker(plot=plot_opts, style=style)
 # As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
 # 
 
-# In[320]:
+# In[330]:
 
 
-import numpy as np
-import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
 
-
-x1 = np.random.normal(0, 0.8, 1000)
-x2 = np.random.normal(-2, 1, 1000)
-x3 = np.random.normal(3, 2, 1000)
-
-kwargs = dict(histtype='stepfilled', alpha=0.3, normed=True, bins=40)
-
-plt.hist(x1, **kwargs)
-plt.hist(x2, **kwargs)
-plt.hist(x3, **kwargs)
-plt.show()
-
-
-# In[305]:
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-
-#kwargs = dict(histtype='stepfilled', alpha=0.3, normed=True, bins=40)
-
-plt.hist()
-plt.show()
-
-
-# In[274]:
-
-
-import matplotlib.pyplot as plt
-
-data = iris_data
-
-
-data.hist(figsize=(10, 10))
-plt.show()
-
-
-# In[294]:
-
-
-from pandas.plotting import scatter_matrix
-
-data = iris_data
-
-color1 = '#fcc5c0'
-color2 = '#f768a1'
-color3 = '#7a0177'
-
-colormap = {'Iris-setosa': color1, 'Iris-versicolor': color2, 'Iris-virginica': color3}
-colors = [colormap[x] for x in iris_data['species']]
-
-scatter_matrix(data, alpha=0.5, color=colors, figsize=(10, 10))
-
+# Scatter plots for the features
+sns.pairplot(iris_data, hue="species")
 plt.show()
 
 
