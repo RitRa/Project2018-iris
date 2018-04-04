@@ -24,7 +24,7 @@
 # HoloViews is an open-source Python library designed to make data analysis and visualization seamless and simple.
 # I am using the Jupyter Notebook for this project.
 
-# In[189]:
+# In[211]:
 
 
 import pandas as pd
@@ -36,7 +36,7 @@ hv.extension('bokeh', 'matplotlib')
 # # Data
 # Import the iris.csv using the panda library and examine first few rows of data
 
-# In[163]:
+# In[212]:
 
 
 iris_data = pd.read_csv('assets/iris.csv')
@@ -48,7 +48,7 @@ iris_data.head()
 
 # # Discovering the Shape of the table
 
-# In[164]:
+# In[213]:
 
 
 iris_data.shape
@@ -58,7 +58,7 @@ iris_data.shape
 # Get the minimum value of all the column in python pandas
 # 
 
-# In[165]:
+# In[214]:
 
 
 iris_data.min()
@@ -66,7 +66,7 @@ iris_data.min()
 
 # Get the maximum value of all the column in python pandas
 
-# In[166]:
+# In[215]:
 
 
 iris_data.max()
@@ -98,13 +98,13 @@ iris_data.median()
 iris_data.std()
 
 
-# # Presenting the summary statistics a more readable way
+# # Presenting the Summary Statistics a more readable way
 # DataFrame.describe: Generates descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding NaN values.
 # 
 # R has a faster way of getting the data with summary
 # 
 
-# In[170]:
+# In[243]:
 
 
 summary = iris_data.describe()
@@ -112,8 +112,10 @@ summary = summary.transpose()
 summary.head()
 
 
-# From the above summary, we can see there is  huge range in the size of the Sepal Length and Petal Length. We will use a scatter plot to see if the size is related to the species of irish.
+# From the above summary, we can see there is  huge range in the size of the Sepal Length and Petal Length. We will use a scatter plot to see if the size is related to the species of Iris.
 
+# Let's investigate the various species and see if there are any obvious differences.
+# 
 # # Boxplot
 # Comparing the distributions of:
 # - Sepal Length
@@ -121,76 +123,117 @@ summary.head()
 # - Petal Length
 # - Petal Width 
 # 
-# This should give us a clearer picture in the differences between the species.
+# 
 
-# In[171]:
+# In[265]:
 
 
-title = "Compare the distributions of Sepal Length"
+# A BoxWhisker Element is a quick way of visually summarizing one or more groups of numerical data 
+#through their quartiles.
 
-boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'sepal_length', label=title)
+# Using holoviews Boxplot
 
-plot_opts = dict(show_legend=False, width=400)
+title = "Compare the Distributions of Sepal Length"
+
+boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'sepal_length', label=title )
+
+plot_opts = dict(show_legend=True, width=600, height=600)
 style = dict(color='species')
 
-boxwhisker(plot=plot_opts, style=style)
+boxwhisker(plot=plot_opts, style=style )
 
 
-# In[172]:
+
+# In[266]:
 
 
 title = "Compare the distributions of Sepal Width"
 
 boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'sepal_width', label=title)
 
-plot_opts = dict(show_legend=False, width=400)
+plot_opts = dict(show_legend=True, width=600, height=600)
 style = dict(color='species')
 
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[173]:
+# In[267]:
 
 
 title = "Compare the distributions of Petal Length"
 
 boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'petal_length', label=title)
 
-plot_opts = dict(show_legend=False, width=400)
+plot_opts = dict(show_legend=True, width=600, height=600)
 style = dict(color='species')
 
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[174]:
+# In[268]:
 
 
 title = "Compare the distributions of Petal Width"
 
 boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'petal_width', label=title)
 
-plot_opts = dict(show_legend=False, width=400)
+plot_opts = dict(show_legend=True, width=600, height=600)
 style = dict(color='species')
 
 boxwhisker(plot=plot_opts, style=style)
 
 
+# From the boxplot chart analysis, there are clear differences in the size of the Sepal Length, Petal Length and Petal Width.
+
 # # Histogram
 # As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
 # 
 
-# In[176]:
+# In[287]:
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+x1 = np.random.normal(0, 0.8, 1000)
+x2 = np.random.normal(-2, 1, 1000)
+x3 = np.random.normal(3, 2, 1000)
+
+kwargs = dict(histtype='stepfilled', alpha=0.3, normed=True, bins=40)
+
+plt.hist(x1, **kwargs)
+plt.hist(x2, **kwargs)
+plt.hist(x3, **kwargs)
+plt.show()
+
+
+# In[305]:
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+#kwargs = dict(histtype='stepfilled', alpha=0.3, normed=True, bins=40)
+
+plt.hist()
+plt.show()
+
+
+# In[274]:
 
 
 import matplotlib.pyplot as plt
 
 data = iris_data
 
+
 data.hist(figsize=(10, 10))
 plt.show()
 
 
-# In[202]:
+# In[294]:
 
 
 from pandas.plotting import scatter_matrix
@@ -258,32 +301,15 @@ p.circle(iris_data["petal_length"], iris_data["petal_width"],
 show(p)
 
 
-# In[185]:
-
-
-hv.help(hv.Histogram)
-
-
-# In[205]:
-
-
-from bokeh.plotting import figure
-
-
-hist, edges = np.histogram(iris_data, density=True, bins=50)
+# In[207]:
 
 
 
-p = figure()
-p.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], line_color="white")
-
-output_file("hist.html")
-show(p)
+iris_data.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)
+plt.show()
 
 
-
-
-# In[199]:
+# In[308]:
 
 
 import numpy as np
@@ -300,6 +326,12 @@ p.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], line_color="white")
 
 output_file("hist.html")
 show(p)
+
+
+# In[216]:
+
+
+
 
 
 # # References
@@ -320,7 +352,20 @@ show(p)
 # min value
 # http://www.datasciencemadesimple.com/get-minimum-value-column-python-pandas/
 # 
+# A histogram with Iris Dataset: Sora Jin June 21st, 2015
+# https://rpubs.com/Sora/developing-data-product
+# 
+# Plot 2D views of the iris dataset
+# http://www.scipy-lectures.org/packages/scikit-learn/auto_examples/plot_iris_scatter.html
+# Statistics in Python
+# http://www.scipy-lectures.org/packages/statistics/index.html#statistics
+# 
 # Docs
 # https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
 # http://holoviews.org/gallery/demos/bokeh/boxplot_chart.html
 # 
+# Machine Learning Tutorial
+# https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+# https://github.com/whatsrupp/iris-classification/blob/master/petal_classifier.py
+# https://diwashrestha.com/2017/09/18/machine-learning-on-iris/
+# https://www.youtube.com/watch?v=rNHKCKXZde8
