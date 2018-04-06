@@ -282,6 +282,20 @@ sns.swarmplot(x="measurement", y="value", hue="species", data=iris2)
 plt.show()
 
 
+# In[436]:
+
+
+sns.violinplot(x="species", y="petal_length", data=iris_data)
+plt.show()
+
+
+# In[437]:
+
+
+sns.violinplot(x="species", y="petal_width", data=iris_data)
+plt.show()
+
+
 # # Histogram
 # As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
 # 
@@ -299,17 +313,6 @@ plt.show()
 
 iris_data.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)
 plt.show()
-
-
-# In[387]:
-
-
-
-
-sns.violinplot(x=iris_data['species'],  data=iris_data, inner=None)
-
-plt.show()
-#sns.violinplot(x="species", y="petal_length", data=iris_data, inner=None)
 
 
 # # Scatterplot with categorical variables
