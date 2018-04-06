@@ -250,49 +250,106 @@ show(p)
 
 
 # # Pairplot
+# Looking for relationships between variables across multiple dimensions
 
-# In[426]:
+# In[460]:
 
 
-sns.set()
-# palettes GnBu_d
-# Scatter plots for the features
-sns.pairplot(iris_data, hue="species", palette="GnBu_d", size=4)
+# My favourite colors = palettes GnBu_d
+
+# Scatter plots for the features and histograms
+# custom markers also applied
+sns.pairplot(iris_data, hue="species", palette="GnBu_d", markers=["o", "s", "D"])
+
+#Remove the top and right spines from plot
+sns.despine()
+
+#show plot
 plt.show()
 
 
-# In[429]:
+# In[461]:
 
 
-sns.pairplot(iris_data, hue="species", palette="GnBu_d", diag_kind="kde")
+#setting the background color
+sns.set(style="whitegrid")
+
+sns.pairplot(iris_data, hue="species", palette="GnBu_d", diag_kind="kde", markers=["o", "s", "D"])
+
+#Remove the top and right spines from plot
+sns.despine()
+
+#show plot
 plt.show()
 
 
-# In[434]:
+# In[466]:
 
 
-sns.set(style="whitegrid", palette="GnBu_d")
+# plotting regression and confidence intervals
+sns.pairplot(iris_data, kind='reg', palette="GnBu_d")
+
+#Remove the top and right spines from plot
+sns.despine()
+
+#show plot
+plt.show()
+
+#strong relationship between petal length and petal width and petal length and sepal length
+
+
+# In[467]:
+
+
+# plotting regression and confidence intervals
+sns.pairplot(iris_data, kind='reg', hue="species", palette="GnBu_d")
+
+#Remove the top and right spines from plot
+sns.despine()
+
+#show plot
+plt.show()
+
+
+# In[452]:
+
+
+#setting the background color and size of graph
+sns.set(style="whitegrid", palette="GnBu_d", rc={'figure.figsize':(11.7,8.27)})
 
 # "Melt" the dataset
 iris2 = pd.melt(iris_data, "species", var_name="measurement")
 
 # Draw a categorical scatterplot
-sns.swarmplot(x="measurement", y="value", hue="species", data=iris2)
+sns.swarmplot(x="measurement", y="value", hue="species",palette="GnBu_d", data=iris2)
 
+#Remove the top and right spines from plot
+sns.despine()
+
+#show plot
 plt.show()
 
 
-# In[436]:
+# In[446]:
 
 
-sns.violinplot(x="species", y="petal_length", data=iris_data)
+sns.violinplot(x="species", y="petal_length", palette="GnBu_d", data=iris_data)
+
+#Remove the top and right spines from plot
+sns.despine()
+
+#show plot
 plt.show()
 
 
-# In[437]:
+# In[455]:
 
 
-sns.violinplot(x="species", y="petal_width", data=iris_data)
+sns.violinplot(x="species", y="petal_width", palette="GnBu_d", data=iris_data)
+#Remove the top and right spines from plot
+sns.despine()
+
+#show plot
 plt.show()
 
 
@@ -393,6 +450,9 @@ show(p)
 # 
 # Iris Data Visualization using Python
 # https://www.kaggle.com/aschakra/iris-data-visualization-using-python
+# 
+# Seaborn Understanding the Weird Parts: pairplot
+# https://www.youtube.com/watch?v=cpZExlOKFH4
 # 
 # Docs
 # https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
