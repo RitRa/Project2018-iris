@@ -24,19 +24,20 @@
 # HoloViews is an open-source Python library designed to make data analysis and visualization seamless and simple.
 # I am using the Jupyter Notebook for this project.
 
-# In[211]:
+# In[418]:
 
 
 import pandas as pd
 import numpy as np
 import holoviews as hv
+import seaborn as sns
 hv.extension('bokeh', 'matplotlib')
 
 
 # # Data
 # Import the iris.csv using the panda library and examine first few rows of data
 
-# In[315]:
+# In[396]:
 
 
 iris_data = pd.read_csv('assets/iris.csv')
@@ -49,7 +50,7 @@ iris_data.head(10)
 
 # # Discovering the Shape of the table
 
-# In[213]:
+# In[397]:
 
 
 iris_data.shape
@@ -57,13 +58,13 @@ iris_data.shape
 
 # # Find out unique classification/type of iris flower and the amount
 
-# In[310]:
+# In[398]:
 
 
 iris_data['species'].unique()
 
 
-# In[313]:
+# In[399]:
 
 
 print(iris_data.groupby('species').size())
@@ -73,7 +74,7 @@ print(iris_data.groupby('species').size())
 # Get the minimum value of all the column in python pandas
 # 
 
-# In[214]:
+# In[400]:
 
 
 iris_data.min()
@@ -81,7 +82,7 @@ iris_data.min()
 
 # Get the maximum value of all the column in python pandas
 
-# In[215]:
+# In[401]:
 
 
 iris_data.max()
@@ -91,7 +92,7 @@ iris_data.max()
 # 
 # Get the mean value of all the column in python pandas
 
-# In[167]:
+# In[402]:
 
 
 iris_data.mean()
@@ -99,7 +100,7 @@ iris_data.mean()
 
 # Get the median value of all the column in python pandas
 
-# In[168]:
+# In[403]:
 
 
 iris_data.median()
@@ -107,7 +108,7 @@ iris_data.median()
 
 # Get the standard deviation value of all the column in python pandas
 
-# In[169]:
+# In[404]:
 
 
 iris_data.std()
@@ -119,7 +120,7 @@ iris_data.std()
 # R has a faster way of getting the data with summary
 # 
 
-# In[243]:
+# In[405]:
 
 
 summary = iris_data.describe()
@@ -140,7 +141,7 @@ summary.head()
 # 
 # 
 
-# In[265]:
+# In[406]:
 
 
 # A BoxWhisker Element is a quick way of visually summarizing one or more groups of numerical data 
@@ -159,7 +160,7 @@ boxwhisker(plot=plot_opts, style=style )
 
 
 
-# In[266]:
+# In[407]:
 
 
 title = "Compare the distributions of Sepal Width"
@@ -172,7 +173,7 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[267]:
+# In[408]:
 
 
 title = "Compare the distributions of Petal Length"
@@ -185,7 +186,7 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[268]:
+# In[409]:
 
 
 title = "Compare the distributions of Petal Width"
@@ -200,29 +201,13 @@ boxwhisker(plot=plot_opts, style=style)
 
 # From the boxplot chart analysis, there are clear differences in the size of the Sepal Length, Petal Length and Petal Width.
 
-# # Histogram
-# As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
-# 
-
-# In[330]:
-
-
-import seaborn as sns
-sns.set()
-
-# Scatter plots for the features
-sns.pairplot(iris_data, hue="species")
-plt.show()
-
-
 # # Comparing the Petal Width and Petal Length across the different Species 
 # Using different colours it is clear that the three species have very different petal sizes.
 
-# In[204]:
+# In[410]:
 
 
 from bokeh.plotting import figure
-
 
 #adding colors
 colormap = {'Iris-setosa': color1, 'Iris-versicolor': color2, 'Iris-virginica': color3}
@@ -240,9 +225,9 @@ p.diamond(iris_data["petal_length"], iris_data["petal_width"],color=colors, fill
 show(p)
 
 
-# # Comparing the Petal Width and Petal Length across the different Species 
+# # Comparing the Petal Width and Sepal Length across the different Species 
 
-# In[203]:
+# In[416]:
 
 
 from bokeh.plotting import figure
@@ -252,23 +237,97 @@ colormap = {'Iris-setosa': color1, 'Iris-versicolor': color2, 'Iris-virginica': 
 colors = [colormap[x] for x in iris_data['species']]
 
 #adding labels
-p = figure(title = "Petal Width and Petal Length")
-p.xaxis.axis_label = 'Petal Length'
+p = figure(title = "Petal Width and Sepal Length")
+p.xaxis.axis_label = 'Sepal Length'
 p.yaxis.axis_label = 'Petal Width'
 
 
-p.circle(iris_data["petal_length"], iris_data["petal_width"],
+p.circle(iris_data["sepal_length"], iris_data["petal_width"],
          color=colors, fill_alpha=0.2, size=10)
 
 
 show(p)
 
 
-# In[207]:
+# # Pairplot
 
+# In[426]:
+
+
+sns.set()
+# palettes GnBu_d
+# Scatter plots for the features
+sns.pairplot(iris_data, hue="species", palette="GnBu_d", size=4)
+plt.show()
+
+
+# In[429]:
+
+
+sns.pairplot(iris_data, hue="species", palette="GnBu_d", diag_kind="kde")
+plt.show()
+
+
+# In[434]:
+
+
+sns.set(style="whitegrid", palette="GnBu_d")
+
+# "Melt" the dataset
+iris2 = pd.melt(iris_data, "species", var_name="measurement")
+
+# Draw a categorical scatterplot
+sns.swarmplot(x="measurement", y="value", hue="species", data=iris2)
+
+plt.show()
+
+
+# # Histogram
+# As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
+# 
+
+# In[413]:
+
+
+
+sns.distplot(iris_data)
+plt.show()
+
+
+# In[381]:
 
 
 iris_data.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)
+plt.show()
+
+
+# In[387]:
+
+
+
+
+sns.violinplot(x=iris_data['species'],  data=iris_data, inner=None)
+
+plt.show()
+#sns.violinplot(x="species", y="petal_length", data=iris_data, inner=None)
+
+
+# # Scatterplot with categorical variables
+
+# In[351]:
+
+
+import pandas as pd
+import seaborn as sns
+sns.set(style="whitegrid", palette="muted")
+
+
+
+# "Melt" the dataset to "long-form" or "tidy" representation
+data = pd.melt(iris , "species", var_name="measurement")
+
+# Draw a categorical scatterplot to show each observation
+sns.swarmplot(x="measurement", y="value", hue="species", data=iris)
 plt.show()
 
 
@@ -326,6 +385,12 @@ show(p)
 # Python - IRIS Data visualization and explanation
 # https://www.kaggle.com/abhishekkrg/python-iris-data-visualization-and-explanation
 # 
+# Visualization with Seaborn (Python)
+# https://www.kaggle.com/rahulm7/visualization-with-seaborn-python
+# 
+# Iris Data Visualization using Python
+# https://www.kaggle.com/aschakra/iris-data-visualization-using-python
+# 
 # Docs
 # https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
 # http://holoviews.org/gallery/demos/bokeh/boxplot_chart.html
@@ -335,3 +400,5 @@ show(p)
 # https://github.com/whatsrupp/iris-classification/blob/master/petal_classifier.py
 # https://diwashrestha.com/2017/09/18/machine-learning-on-iris/
 # https://www.youtube.com/watch?v=rNHKCKXZde8
+# 
+# http://seaborn.pydata.org/examples/scatterplot_categorical.html
