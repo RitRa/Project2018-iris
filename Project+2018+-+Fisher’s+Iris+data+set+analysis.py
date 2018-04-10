@@ -4,7 +4,7 @@
 # # Research
 # 
 # The Iris flower data set or Fisher's Iris data set is a multivariate data set introduced by the British statistician and biologist Ronald Fisher in his 1936 paper "The use of multiple measurements in taxonomic problems" as an example of linear discriminant analysis.
-# This famous iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+# This famous iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. Based on the combination of these four features, Fisher developed a linear discriminant model to distinguish the species from each other.
 # 
 # The dataset contains a set of 150 records under 5 attributes -
 # 
@@ -18,13 +18,15 @@
 # -- Iris Virginica
 # 
 
+# <img src="assets/irises.png" />
+
 # Importing the libaries for this project: Pandas, Numpy, Holoviews.
 # Pandas is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools.
 # NumPy is the fundamental package for scientific computing with Python
 # HoloViews is an open-source Python library designed to make data analysis and visualization seamless and simple.
 # I am using the Jupyter Notebook for this project.
 
-# In[418]:
+# In[505]:
 
 
 import pandas as pd
@@ -37,7 +39,7 @@ hv.extension('bokeh', 'matplotlib')
 # # Data
 # Import the iris.csv using the panda library and examine first few rows of data
 
-# In[396]:
+# In[506]:
 
 
 iris_data = pd.read_csv('assets/iris.csv')
@@ -50,7 +52,7 @@ iris_data.head(10)
 
 # # Discovering the Shape of the table
 
-# In[397]:
+# In[507]:
 
 
 iris_data.shape
@@ -58,13 +60,13 @@ iris_data.shape
 
 # # Find out unique classification/type of iris flower and the amount
 
-# In[398]:
+# In[508]:
 
 
 iris_data['species'].unique()
 
 
-# In[399]:
+# In[509]:
 
 
 print(iris_data.groupby('species').size())
@@ -74,7 +76,7 @@ print(iris_data.groupby('species').size())
 # Get the minimum value of all the column in python pandas
 # 
 
-# In[400]:
+# In[510]:
 
 
 iris_data.min()
@@ -82,7 +84,7 @@ iris_data.min()
 
 # Get the maximum value of all the column in python pandas
 
-# In[401]:
+# In[511]:
 
 
 iris_data.max()
@@ -92,7 +94,7 @@ iris_data.max()
 # 
 # Get the mean value of all the column in python pandas
 
-# In[402]:
+# In[512]:
 
 
 iris_data.mean()
@@ -100,7 +102,7 @@ iris_data.mean()
 
 # Get the median value of all the column in python pandas
 
-# In[403]:
+# In[513]:
 
 
 iris_data.median()
@@ -108,7 +110,7 @@ iris_data.median()
 
 # Get the standard deviation value of all the column in python pandas
 
-# In[404]:
+# In[514]:
 
 
 iris_data.std()
@@ -120,7 +122,7 @@ iris_data.std()
 # R has a faster way of getting the data with summary
 # 
 
-# In[405]:
+# In[515]:
 
 
 summary = iris_data.describe()
@@ -141,7 +143,7 @@ summary.head()
 # 
 # 
 
-# In[406]:
+# In[516]:
 
 
 # A BoxWhisker Element is a quick way of visually summarizing one or more groups of numerical data 
@@ -160,7 +162,7 @@ boxwhisker(plot=plot_opts, style=style )
 
 
 
-# In[407]:
+# In[517]:
 
 
 title = "Compare the distributions of Sepal Width"
@@ -173,7 +175,7 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[408]:
+# In[518]:
 
 
 title = "Compare the distributions of Petal Length"
@@ -186,7 +188,7 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[409]:
+# In[519]:
 
 
 title = "Compare the distributions of Petal Width"
@@ -204,7 +206,7 @@ boxwhisker(plot=plot_opts, style=style)
 # # Comparing the Petal Width and Petal Length across the different Species 
 # Using different colours it is clear that the three species have very different petal sizes.
 
-# In[410]:
+# In[520]:
 
 
 from bokeh.plotting import figure
@@ -227,7 +229,7 @@ show(p)
 
 # # Comparing the Petal Width and Sepal Length across the different Species 
 
-# In[416]:
+# In[521]:
 
 
 from bokeh.plotting import figure
@@ -353,18 +355,6 @@ sns.despine()
 plt.show()
 
 
-# # Histogram
-# As there is a big difference is the min and max of Sepal Length. Let's see the distribution of Sepal Length and Species
-# 
-
-# In[413]:
-
-
-
-sns.distplot(iris_data)
-plt.show()
-
-
 # In[381]:
 
 
@@ -372,48 +362,124 @@ iris_data.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=Fal
 plt.show()
 
 
-# # Scatterplot with categorical variables
+# # Machine Learning using scikit-learn
+# Machine Learning in Python.
+# 
+# The iris data set already exisits in sklearn so I'm going to reuse it.
 
-# In[351]:
-
-
-import pandas as pd
-import seaborn as sns
-sns.set(style="whitegrid", palette="muted")
+# In[482]:
 
 
-
-# "Melt" the dataset to "long-form" or "tidy" representation
-data = pd.melt(iris , "species", var_name="measurement")
-
-# Draw a categorical scatterplot to show each observation
-sns.swarmplot(x="measurement", y="value", hue="species", data=iris)
-plt.show()
+# import load_iris function from datasets module
+from sklearn.datasets import load_iris
 
 
-# In[308]:
+# In[483]:
 
 
-import numpy as np
-from bokeh.io import show, output_file
-from bokeh.plotting import figure
-
-data = np.random.normal(0, 0.5, 1000)
-hist, edges = np.histogram(data, density=True, bins=50)
-
-x = np.linspace(-2, 2, 1000)
-
-p = figure()
-p.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], line_color="white")
-
-output_file("hist.html")
-show(p)
+# save "bunch" object containing iris dataset and its attributes
+iris = load_iris()
+type(iris)
 
 
-# In[216]:
+# In[484]:
 
 
+# print the iris data
+print(iris.data)
 
+
+# In[491]:
+
+
+# print integers representing the species of each observation
+print(iris.target)
+
+#print the names of the targets
+print(iris.target_names)
+
+# print the names of the four features
+print(iris.feature_names)
+
+
+# In[493]:
+
+
+# print the names of the four features
+print(iris.target.shape)
+
+
+# In[497]:
+
+
+# store feature matrix in "X"
+x = iris.data
+
+# store response vector in "y"
+y = iris.target
+
+print(x.shape)
+
+print(y.shape)
+print(np.unique(y))
+
+
+# In[499]:
+
+
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=1)
+print(knn)
+
+
+# In[500]:
+
+
+knn.fit(x, y)
+
+
+# In[501]:
+
+
+knn.predict([[3, 5, 4, 2]])
+
+
+# In[502]:
+
+
+X_new = [[3, 5, 4, 2], [5, 4, 3, 2]]
+
+# predict the response for new
+knn.predict(X_new)
+
+
+# In[503]:
+
+
+# instantiate the model (using the value K=5)
+knn = KNeighborsClassifier(n_neighbors=5)
+
+# fit the model with data
+knn.fit(X, y)
+
+# predict the response for new observations
+knn.predict(X_new)
+
+
+# In[504]:
+
+
+# import the class
+from sklearn.linear_model import LogisticRegression
+
+# instantiate the model (using the default parameters)
+logreg = LogisticRegression()
+
+# fit the model with data
+logreg.fit(X, y)
+
+# predict the response for new observations
+logreg.predict(X_new)
 
 
 # # References
@@ -439,6 +505,7 @@ show(p)
 # 
 # Plot 2D views of the iris dataset
 # http://www.scipy-lectures.org/packages/scikit-learn/auto_examples/plot_iris_scatter.html
+# 
 # Statistics in Python
 # http://www.scipy-lectures.org/packages/statistics/index.html#statistics
 # 
@@ -456,12 +523,25 @@ show(p)
 # 
 # Docs
 # https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
+# 
 # http://holoviews.org/gallery/demos/bokeh/boxplot_chart.html
 # 
 # Machine Learning Tutorial
+# http://scikit-learn.org/stable/tutorial/basic/tutorial.html
+# 
 # https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+# 
 # https://github.com/whatsrupp/iris-classification/blob/master/petal_classifier.py
+# 
 # https://diwashrestha.com/2017/09/18/machine-learning-on-iris/
+# 
 # https://www.youtube.com/watch?v=rNHKCKXZde8
 # 
 # http://seaborn.pydata.org/examples/scatterplot_categorical.html
+# 
+# IRIS DATASET ANALYSIS (PYTHON)
+# http://d4t4.biz/ml-with-scikit-learn/support-vector-machines-project-wip/
+# 
+# Getting started in scikit-learn with the famous iris dataset
+# https://www.youtube.com/watch?v=hd1W4CyPX58
+# http://blog.kaggle.com/2015/04/22/scikit-learn-video-3-machine-learning-first-steps-with-the-iris-dataset/
