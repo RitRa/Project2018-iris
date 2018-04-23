@@ -141,6 +141,7 @@ summary.head()
 # Let's investigate the various species and see if there are any obvious differences.
 # 
 # # Boxplot
+# The boxplot is a quick way of visually summarizing one or more groups of numerical data through their quartiles.
 # Comparing the distributions of:
 # - Sepal Length
 # - Sepal Width
@@ -149,62 +150,72 @@ summary.head()
 # 
 # 
 
-# In[56]:
+# In[113]:
 
 
-# A BoxWhisker Element is a quick way of visually summarizing one or more groups of numerical data 
-#through their quartiles.
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.set(style="whitegrid", palette="GnBu_d", rc={'figure.figsize':(11.7,8.27)})
 
-# Here I used holoviews Boxplot
+title="Compare the Distributions of Sepal Length"
 
-title = "Compare the Distributions of Sepal Length"
+sns.boxplot(x="species", y="sepal_length", data=iris_data)
 
-boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'sepal_length', label=title )
-
-plot_opts = dict(show_legend=True, width=600, height=600)
-style = dict(color='species')
-
-boxwhisker(plot=plot_opts, style=style )
-
+# increasing font size
+plt.title(title, fontsize=26)
+# Show the plot
+plt.show()
 
 
-# In[57]:
+# In[115]:
 
 
-title = "Compare the distributions of Sepal Width"
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.set(style="whitegrid", palette="GnBu_d", rc={'figure.figsize':(11.7,8.27)})
 
-boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'sepal_width', label=title)
+title="Compare the Distributions of Sepal Width"
 
-plot_opts = dict(show_legend=True, width=600, height=600)
-style = dict(color='species')
+sns.boxplot(x="species", y="sepal_width", data=iris_data)
 
-boxwhisker(plot=plot_opts, style=style)
-
-
-# In[58]:
-
-
-title = "Compare the distributions of Petal Length"
-
-boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'petal_length', label=title)
-
-plot_opts = dict(show_legend=True, width=600, height=600)
-style = dict(color='species')
-
-boxwhisker(plot=plot_opts, style=style)
+# increasing font size
+plt.title(title, fontsize=26)
+# Show the plot
+plt.show()
 
 
-# In[59]:
+# In[116]:
 
 
-title = "Compare the distributions of Petal Width"
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.set(style="whitegrid", palette="GnBu_d", rc={'figure.figsize':(11.7,8.27)})
 
-boxwhisker = hv.BoxWhisker(iris_data, ['species'], 'petal_width', label=title)
+title="Compare the Distributions of Petal Length"
 
-plot_opts = dict(show_legend=True, width=600, height=600)
-style = dict(color='species')
+sns.boxplot(x="species", y="petal_length", data=iris_data)
 
-boxwhisker(plot=plot_opts, style=style)
+# increasing font size
+plt.title(title, fontsize=26)
+# Show the plot
+plt.show()
+
+
+# In[117]:
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.set(style="whitegrid", palette="GnBu_d", rc={'figure.figsize':(11.7,8.27)})
+
+title="Compare the distributions of Petal Width"
+
+sns.boxplot(x="species", y="petal_width", data=iris_data)
+
+# increasing font size
+plt.title(title, fontsize=26)
+# Show the plot
+plt.show()
 
 
 # From the boxplot chart analysis, there are clear differences in the size of the Sepal Length, Petal Length and Petal Width among the different species. 
@@ -212,10 +223,11 @@ boxwhisker(plot=plot_opts, style=style)
 # # Comparing the Petal Width and Petal Length across the different Species 
 # Using different colours it is clear that the three species have very different petal sizes.
 
-# In[60]:
+# In[79]:
 
 
-from bokeh.plotting import figure
+from bokeh.plotting import figure, output_file, show
+output_file("test1.html")
 
 color1 = '#fcc5c0'
 color2 = '#f768a1'
@@ -239,10 +251,11 @@ show(p)
 
 # # Comparing the Petal Width and Sepal Length across the different Species 
 
-# In[61]:
+# In[78]:
 
 
-from bokeh.plotting import figure
+from bokeh.plotting import figure, output_file, show
+output_file("test2.html")
 
 #adding colors
 colormap = {'Iris-setosa': color1, 'Iris-versicolor': color2, 'Iris-virginica': color3}
@@ -276,11 +289,11 @@ sns.pairplot(iris_data, hue="species", palette="GnBu_d", markers=["o", "s", "D"]
 #Remove the top and right spines from plot
 sns.despine()
 
+#show plot
 import matplotlib.pyplot as plt
 plt.show()
 
-#show plot
-#plt.show()
+
 
 
 # In[69]:
@@ -314,21 +327,6 @@ import matplotlib.pyplot as plt
 plt.show()
 
 #strong relationship between petal length and petal width and petal length and sepal length
-
-
-# In[72]:
-
-
-import seaborn as sns
-# plotting regression and confidence intervals
-sns.pairplot(iris_data, kind='reg', hue="species", palette="GnBu_d")
-
-#Remove the top and right spines from plot
-sns.despine()
-
-#show plot
-import matplotlib.pyplot as plt
-plt.show()
 
 
 # In[452]:
@@ -387,9 +385,10 @@ import matplotlib.pyplot as plt
 plt.show()
 
 
-# In[381]:
+# In[77]:
 
 
+import matplotlib.pyplot as plt
 iris_data.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)
 plt.show()
 
