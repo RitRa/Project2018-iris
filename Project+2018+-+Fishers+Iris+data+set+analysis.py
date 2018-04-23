@@ -18,15 +18,21 @@
 # -- Iris Virginica
 # 
 
-# <img src="assets/irises.png" />
+# ![irises.png](attachment:irises.png)
 
 # Importing the libaries for this project: Pandas, Numpy, Holoviews.
+# 
 # Pandas is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools.
+# 
 # NumPy is the fundamental package for scientific computing with Python
+# 
 # HoloViews is an open-source Python library designed to make data analysis and visualization seamless and simple.
-# I am using the Jupyter Notebook for this project.
+# 
+# Seaborn is a Python visualization library based on matplotlib. It provides a high-level interface for drawing attractive statistical graphics.
+# 
+# I also used the Jupyter Notebook for this project. 
 
-# In[505]:
+# In[45]:
 
 
 import pandas as pd
@@ -39,7 +45,7 @@ hv.extension('bokeh', 'matplotlib')
 # # Data
 # Import the iris.csv using the panda library and examine first few rows of data
 
-# In[506]:
+# In[46]:
 
 
 iris_data = pd.read_csv('assets/iris.csv')
@@ -52,7 +58,7 @@ iris_data.head(10)
 
 # # Discovering the Shape of the table
 
-# In[507]:
+# In[47]:
 
 
 iris_data.shape
@@ -60,13 +66,13 @@ iris_data.shape
 
 # # Find out unique classification/type of iris flower and the amount
 
-# In[508]:
+# In[48]:
 
 
 iris_data['species'].unique()
 
 
-# In[509]:
+# In[49]:
 
 
 print(iris_data.groupby('species').size())
@@ -76,7 +82,7 @@ print(iris_data.groupby('species').size())
 # Get the minimum value of all the column in python pandas
 # 
 
-# In[510]:
+# In[50]:
 
 
 iris_data.min()
@@ -84,7 +90,7 @@ iris_data.min()
 
 # Get the maximum value of all the column in python pandas
 
-# In[511]:
+# In[51]:
 
 
 iris_data.max()
@@ -94,7 +100,7 @@ iris_data.max()
 # 
 # Get the mean value of all the column in python pandas
 
-# In[512]:
+# In[52]:
 
 
 iris_data.mean()
@@ -102,7 +108,7 @@ iris_data.mean()
 
 # Get the median value of all the column in python pandas
 
-# In[513]:
+# In[53]:
 
 
 iris_data.median()
@@ -110,7 +116,7 @@ iris_data.median()
 
 # Get the standard deviation value of all the column in python pandas
 
-# In[514]:
+# In[54]:
 
 
 iris_data.std()
@@ -122,7 +128,7 @@ iris_data.std()
 # R has a faster way of getting the data with summary
 # 
 
-# In[515]:
+# In[55]:
 
 
 summary = iris_data.describe()
@@ -143,13 +149,13 @@ summary.head()
 # 
 # 
 
-# In[516]:
+# In[56]:
 
 
 # A BoxWhisker Element is a quick way of visually summarizing one or more groups of numerical data 
 #through their quartiles.
 
-# Using holoviews Boxplot
+# Here I used holoviews Boxplot
 
 title = "Compare the Distributions of Sepal Length"
 
@@ -162,7 +168,7 @@ boxwhisker(plot=plot_opts, style=style )
 
 
 
-# In[517]:
+# In[57]:
 
 
 title = "Compare the distributions of Sepal Width"
@@ -175,7 +181,7 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[518]:
+# In[58]:
 
 
 title = "Compare the distributions of Petal Length"
@@ -188,7 +194,7 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# In[519]:
+# In[59]:
 
 
 title = "Compare the distributions of Petal Width"
@@ -201,16 +207,20 @@ style = dict(color='species')
 boxwhisker(plot=plot_opts, style=style)
 
 
-# From the boxplot chart analysis, there are clear differences in the size of the Sepal Length, Petal Length and Petal Width.
+# From the boxplot chart analysis, there are clear differences in the size of the Sepal Length, Petal Length and Petal Width among the different species. 
 
 # # Comparing the Petal Width and Petal Length across the different Species 
 # Using different colours it is clear that the three species have very different petal sizes.
 
-# In[520]:
+# In[60]:
 
 
 from bokeh.plotting import figure
 
+color1 = '#fcc5c0'
+color2 = '#f768a1'
+color3 = '#7a0177'
+    
 #adding colors
 colormap = {'Iris-setosa': color1, 'Iris-versicolor': color2, 'Iris-virginica': color3}
 colors = [colormap[x] for x in iris_data['species']]
@@ -229,7 +239,7 @@ show(p)
 
 # # Comparing the Petal Width and Sepal Length across the different Species 
 
-# In[521]:
+# In[61]:
 
 
 from bokeh.plotting import figure
@@ -254,11 +264,11 @@ show(p)
 # # Pairplot
 # Looking for relationships between variables across multiple dimensions
 
-# In[460]:
+# In[68]:
 
 
 # My favourite colors = palettes GnBu_d
-
+import seaborn as sns
 # Scatter plots for the features and histograms
 # custom markers also applied
 sns.pairplot(iris_data, hue="species", palette="GnBu_d", markers=["o", "s", "D"])
@@ -266,14 +276,18 @@ sns.pairplot(iris_data, hue="species", palette="GnBu_d", markers=["o", "s", "D"]
 #Remove the top and right spines from plot
 sns.despine()
 
-#show plot
+import matplotlib.pyplot as plt
 plt.show()
 
+#show plot
+#plt.show()
 
-# In[461]:
+
+# In[69]:
 
 
 #setting the background color
+import seaborn as sns
 sns.set(style="whitegrid")
 
 sns.pairplot(iris_data, hue="species", palette="GnBu_d", diag_kind="kde", markers=["o", "s", "D"])
@@ -281,28 +295,31 @@ sns.pairplot(iris_data, hue="species", palette="GnBu_d", diag_kind="kde", marker
 #Remove the top and right spines from plot
 sns.despine()
 
-#show plot
+import matplotlib.pyplot as plt
 plt.show()
 
 
-# In[466]:
+# In[71]:
 
 
 # plotting regression and confidence intervals
-sns.pairplot(iris_data, kind='reg', palette="GnBu_d")
+import seaborn as sns
+sns.pairplot(iris_data,hue="species", kind='reg', palette="GnBu_d")
 
 #Remove the top and right spines from plot
 sns.despine()
 
 #show plot
+import matplotlib.pyplot as plt
 plt.show()
 
 #strong relationship between petal length and petal width and petal length and sepal length
 
 
-# In[467]:
+# In[72]:
 
 
+import seaborn as sns
 # plotting regression and confidence intervals
 sns.pairplot(iris_data, kind='reg', hue="species", palette="GnBu_d")
 
@@ -310,12 +327,14 @@ sns.pairplot(iris_data, kind='reg', hue="species", palette="GnBu_d")
 sns.despine()
 
 #show plot
+import matplotlib.pyplot as plt
 plt.show()
 
 
 # In[452]:
 
 
+import seaborn as sns
 #setting the background color and size of graph
 sns.set(style="whitegrid", palette="GnBu_d", rc={'figure.figsize':(11.7,8.27)})
 
@@ -329,10 +348,16 @@ sns.swarmplot(x="measurement", y="value", hue="species",palette="GnBu_d", data=i
 sns.despine()
 
 #show plot
+import matplotlib.pyplot as plt
 plt.show()
 
 
-# In[446]:
+# In[75]:
+
+
+import seaborn as sns
+#setting the background color and size of graph
+sns.set(style="whitegrid", palette="GnBu_d", rc={'figure.figsize':(11.7,8.27)})
 
 
 sns.violinplot(x="species", y="petal_length", palette="GnBu_d", data=iris_data)
@@ -341,17 +366,24 @@ sns.violinplot(x="species", y="petal_length", palette="GnBu_d", data=iris_data)
 sns.despine()
 
 #show plot
+import matplotlib.pyplot as plt
 plt.show()
 
 
-# In[455]:
+# In[76]:
 
+
+import seaborn as sns
+#setting the background color and size of graph
+sns.set(style="whitegrid", palette="GnBu_d", rc={'figure.figsize':(11.7,8.27)})
 
 sns.violinplot(x="species", y="petal_width", palette="GnBu_d", data=iris_data)
 #Remove the top and right spines from plot
 sns.despine()
 
+
 #show plot
+import matplotlib.pyplot as plt
 plt.show()
 
 
@@ -363,7 +395,7 @@ plt.show()
 
 
 # # Machine Learning using scikit-learn
-# Machine Learning in Python.
+# Machine Learning in Python. This is a tutorial I found online. 
 # 
 # The iris data set already exisits in sklearn so I'm going to reuse it.
 
@@ -382,7 +414,7 @@ iris = load_iris()
 type(iris)
 
 
-# In[484]:
+# In[523]:
 
 
 # print the iris data
