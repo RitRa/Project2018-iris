@@ -75,3 +75,20 @@ plotting regression and confidence intervals
 
 Use kernel density estimates for univariate plots:
 ![pairplot](assets/pairplot3.png)
+
+# Swarm plot
+
+![Swarmplot](assets/swarmplot1.png)
+
+# Violin plot
+
+Petal Length
+![Swarmplot](assets/violinplot.png)
+
+Petal Width
+![Swarmplot](assets/vp_pw.png)
+
+# Box plot
+![Simple Boxplot](assets/Figure_1.png)
+
+
