@@ -29,17 +29,17 @@ Seaborn is a Python visualization library based on matplotlib. It provides a hig
 
 I also used the Jupyter Notebook for this project. 
 
-## 1. Data Import
+## Data Import
 Import the iris.csv using the panda library and examine first few rows of data
 
-## 2. Discovering the Shape of the table
+## Discovering the Shape of the table
 
-## 3. Find out unique classification/type of iris flower and the amount
+## Find out unique classification/type of iris flower and the amount
 'Iris-setosa', 'Iris-versicolor', 'Iris-virginica'
 
-## 4. Investigating the data: Min, Max, Mean, Median and Standard Deviation
+## Investigating the data: Min, Max, Mean, Median and Standard Deviation
 
-## 5. Summary Statistics Table
+## Summary Statistics Table
 From the above summary, we can see there is huge range in the size of the Sepal Length and Petal Length. We will use box plots and scatter plots to see if the size is related to the species of Iris.
 
 ## Boxplots
