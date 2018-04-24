@@ -69,5 +69,9 @@ Here we can use to variables to show that there is distinct difference in sizes 
 This chart enables us to quickly see the relationships between variables across multiple dimensions usings scatterplots and histograms.
 
 ![pairplot](assets/pairplot1.png)
+
+plotting regression and confidence intervals
 ![pairplot](assets/pairplot2.png)
+
+Use kernel density estimates for univariate plots:
 ![pairplot](assets/pairplot3.png)
