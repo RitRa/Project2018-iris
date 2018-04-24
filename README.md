@@ -52,6 +52,11 @@ The boxplot is a quick way of visually summarizing one or more groups of numeric
 - Petal Length
 - Petal Width
 
+![Boxplot Petal Length](assets/boxplot-petal_length.png)
+![Boxplot Petal Width](assets/boxplot-petal_width.png)
+![Boxplot Sepal Length](assets/boxplot-sepal_length.png)
+![Boxplot Petal Width](assets/boxplot-sepal_width.png)
+
 From the Boxplot, we can see that there are distinct differences between the Petal Length, Petal Width and Sepal Length across the Species. 
 
 ## Scatterplots
