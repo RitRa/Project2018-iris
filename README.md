@@ -33,6 +33,7 @@ I also used the Jupyter Notebook for this project.
 Import the iris.csv using the panda library and examine first few rows of data
 
 ## Discovering the Shape of the table
+Find out what the size of rows and columns in the table
 
 ## Find out unique classification/type of iris flower and the amount
 'Iris-setosa', 'Iris-versicolor', 'Iris-virginica'
