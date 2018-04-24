@@ -13,3 +13,5 @@ The dataset contains a set of 150 records under 5 attributes -
 -- Iris Setosa 
 -- Iris Versicolour 
 -- Iris Virginica
+
+![iris](assets/iris.png)
