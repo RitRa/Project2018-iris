@@ -40,4 +40,17 @@ Import the iris.csv using the panda library and examine first few rows of data
 ## 4. Investigating the data: Min, Max, Mean, Median and Standard Deviation
 
 ## 5. Summary Statistics Table
-From the above summary, we can see there is huge range in the size of the Sepal Length and Petal Length. We will use a scatter plot to see if the size is related to the species of Iris.
+From the above summary, we can see there is huge range in the size of the Sepal Length and Petal Length. We will use box plots and scatter plots to see if the size is related to the species of Iris.
+
+## Boxplots
+The boxplot is a quick way of visually summarizing one or more groups of numerical data through their quartiles. Comparing the distributions of:
+
+- Sepal Length
+- Sepal Width
+- Petal Length
+- Petal Width
+
+From the Boxplot, we can see that there are distinct differences between the Petal Length, Petal Width and Sepal Length across the Species. 
+
+## Scatterplots
+Here we can use to variables to show that there is distinct difference in sizes between the species. Firstly, we look at the Petal width and Petal length across the species. Is it clear to see that the iris Setosa has a significantly smaller petal width and petal length than the other two species. This difference occurs again for the Petal width and Sepal length. And in both cases we can see that the Iris Viginica is the largest species.
