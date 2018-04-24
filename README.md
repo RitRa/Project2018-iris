@@ -70,10 +70,10 @@ This chart enables us to quickly see the relationships between variables across 
 
 ![pairplot](assets/pairplot1.png)
 
-plotting regression and confidence intervals
+Plotting regression and confidence intervals
 ![pairplot](assets/pairplot2.png)
 
-Use kernel density estimates for univariate plots:
+Use kernel density estimates for univariate plots
 ![pairplot](assets/pairplot3.png)
 
 # Swarm plot
@@ -91,4 +91,69 @@ Petal Width
 # Box plot
 ![Simple Boxplot](assets/Figure_1.png)
 
+# Machine Learning using scikit-learn
 
+
+# References
+Background info
+https://en.wikipedia.org/wiki/Iris_flower_data_set
+https://archive.ics.uci.edu/ml/datasets/iris
+
+Summary values
+https://stackoverflow.com/questions/33889310/r-summary-equivalent-in-numpy
+
+R iris project
+https://rstudio-pubs-static.s3.amazonaws.com/205883_b658730c12d14aa6996fe2f6c612c65f.html
+
+python iris project
+https://rajritvikblog.wordpress.com/2017/06/29/iris-dataset-analysis-python/
+
+min value
+http://www.datasciencemadesimple.com/get-minimum-value-column-python-pandas/
+
+A histogram with Iris Dataset: Sora Jin June 21st, 2015
+https://rpubs.com/Sora/developing-data-product
+
+Plot 2D views of the iris dataset
+http://www.scipy-lectures.org/packages/scikit-learn/auto_examples/plot_iris_scatter.html
+
+Statistics in Python
+http://www.scipy-lectures.org/packages/statistics/index.html#statistics
+
+Python - IRIS Data visualization and explanation
+https://www.kaggle.com/abhishekkrg/python-iris-data-visualization-and-explanation
+
+
+Visualization with Seaborn (Python)
+https://www.kaggle.com/rahulm7/visualization-with-seaborn-python
+
+Iris Data Visualization using Python
+https://www.kaggle.com/aschakra/iris-data-visualization-using-python
+
+Seaborn Understanding the Weird Parts: pairplot
+https://www.youtube.com/watch?v=cpZExlOKFH4
+
+Docs
+https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
+
+http://holoviews.org/gallery/demos/bokeh/boxplot_chart.html
+
+Machine Learning Tutorial
+http://scikit-learn.org/stable/tutorial/basic/tutorial.html
+
+https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+
+https://github.com/whatsrupp/iris-classification/blob/master/petal_classifier.py
+
+https://diwashrestha.com/2017/09/18/machine-learning-on-iris/
+
+https://www.youtube.com/watch?v=rNHKCKXZde8
+
+http://seaborn.pydata.org/examples/scatterplot_categorical.html
+
+IRIS DATASET ANALYSIS (PYTHON)
+http://d4t4.biz/ml-with-scikit-learn/support-vector-machines-project-wip/
+
+Getting started in scikit-learn with the famous iris dataset
+https://www.youtube.com/watch?v=hd1W4CyPX58
+http://blog.kaggle.com/2015/04/22/scikit-learn-video-3-machine-learning-first-steps-with-the-iris-dataset/
