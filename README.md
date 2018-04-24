@@ -56,3 +56,6 @@ From the Boxplot, we can see that there are distinct differences between the Pet
 
 ## Scatterplots
 Here we can use to variables to show that there is distinct difference in sizes between the species. Firstly, we look at the Petal width and Petal length across the species. Is it clear to see that the iris Setosa has a significantly smaller petal width and petal length than the other two species. This difference occurs again for the Petal width and Sepal length. And in both cases we can see that the Iris Viginica is the largest species.
+
+## Pairplot
+This chart enables us to quickly see the relationships between variables across multiple dimensions usings scatterplots and histograms.
