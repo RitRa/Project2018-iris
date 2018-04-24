@@ -15,3 +15,25 @@ The dataset contains a set of 150 records under 5 attributes -
 -- Iris Virginica
 
 ![iris](assets/irises.png)
+
+Importing the libaries for this project: Pandas, Numpy, Holoviews.
+
+Pandas is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools.
+
+NumPy is the fundamental package for scientific computing with Python
+
+HoloViews is an open-source Python library designed to make data analysis and visualization seamless and simple.
+
+Seaborn is a Python visualization library based on matplotlib. It provides a high-level interface for drawing attractive statistical graphics.
+
+I also used the Jupyter Notebook for this project. 
+
+Step 1. Data Import
+Import the iris.csv using the panda library and examine first few rows of data
+
+Step 2. Discovering the Shape of the table
+
+Step 3. Find out unique classification/type of iris flower and the amount
+array(['Iris-setosa', 'Iris-versicolor', 'Iris-virginica'], dtype=object)
+
+Step 4. 
