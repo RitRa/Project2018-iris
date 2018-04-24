@@ -37,10 +37,11 @@ Import the iris.csv using the panda library and examine first few rows of data
 ## Find out unique classification/type of iris flower and the amount
 'Iris-setosa', 'Iris-versicolor', 'Iris-virginica'
 
-## Investigating the data: Min, Max, Mean, Median and Standard Deviation
+## Investigating the data
+Min, Max, Mean, Median and Standard Deviation
 
 ## Summary Statistics Table
-From the above summary, we can see there is huge range in the size of the Sepal Length and Petal Length. We will use box plots and scatter plots to see if the size is related to the species of Iris.
+This statistics table is a much nicer, cleaner way to present the data. We can see there is huge range in the size of the Sepal Length and Petal Length. We will use box plots and scatter plots to see if the size is related to the species of Iris.
 
 ## Boxplots
 The boxplot is a quick way of visually summarizing one or more groups of numerical data through their quartiles. Comparing the distributions of:
