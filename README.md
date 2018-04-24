@@ -82,6 +82,8 @@ Use kernel density estimates for univariate plots
 
 # Violin plot
 
+A voilin plot is used to visualise the distribution of the data and its probability density. The thick black bar in the center represents the interquartile range, the thin black line extended from it represents the 95% confidence intervals, and the white dot is the median.
+
 Petal Length
 ![Swarmplot](assets/violinplot.png)
 
