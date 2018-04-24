@@ -68,5 +68,6 @@ Here we can use to variables to show that there is distinct difference in sizes 
 ## Pairplot
 This chart enables us to quickly see the relationships between variables across multiple dimensions usings scatterplots and histograms.
 
-![pairplot](assets/Figure_1.png)
 ![pairplot](assets/pairplot1.png)
+![pairplot](assets/pairplot2.png)
+![pairplot](assets/pairplot3.png)
