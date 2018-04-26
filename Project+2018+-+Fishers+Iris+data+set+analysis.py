@@ -32,20 +32,20 @@
 # 
 # I also used the Jupyter Notebook for this project. 
 
-# In[45]:
+# In[48]:
 
 
 import pandas as pd
 import numpy as np
-import holoviews as hv
+#import holoviews as hv
 import seaborn as sns
-hv.extension('bokeh', 'matplotlib')
+#hv.extension('bokeh', 'matplotlib')
 
 
 # # Data
 # Import the iris.csv using the panda library and examine first few rows of data
 
-# In[46]:
+# In[49]:
 
 
 iris_data = pd.read_csv('assets/iris.csv')
@@ -58,7 +58,7 @@ iris_data.head(10)
 
 # # Discovering the Shape of the table
 
-# In[47]:
+# In[50]:
 
 
 iris_data.shape
@@ -66,13 +66,13 @@ iris_data.shape
 
 # # Find out unique classification/type of iris flower and the amount
 
-# In[48]:
+# In[51]:
 
 
 iris_data['species'].unique()
 
 
-# In[49]:
+# In[52]:
 
 
 print(iris_data.groupby('species').size())
@@ -82,7 +82,7 @@ print(iris_data.groupby('species').size())
 # Get the minimum value of all the column in python pandas
 # 
 
-# In[50]:
+# In[53]:
 
 
 iris_data.min()
@@ -90,7 +90,7 @@ iris_data.min()
 
 # Get the maximum value of all the column in python pandas
 
-# In[51]:
+# In[54]:
 
 
 iris_data.max()
@@ -100,7 +100,7 @@ iris_data.max()
 # 
 # Get the mean value of all the column in python pandas
 
-# In[52]:
+# In[55]:
 
 
 iris_data.mean()
@@ -108,7 +108,7 @@ iris_data.mean()
 
 # Get the median value of all the column in python pandas
 
-# In[53]:
+# In[56]:
 
 
 iris_data.median()
@@ -116,7 +116,7 @@ iris_data.median()
 
 # Get the standard deviation value of all the column in python pandas
 
-# In[54]:
+# In[57]:
 
 
 iris_data.std()
@@ -128,7 +128,7 @@ iris_data.std()
 # R has a faster way of getting the data with summary
 # 
 
-# In[55]:
+# In[58]:
 
 
 summary = iris_data.describe()
@@ -150,7 +150,7 @@ summary.head()
 # 
 # 
 
-# In[113]:
+# In[59]:
 
 
 import seaborn as sns
@@ -167,7 +167,7 @@ plt.title(title, fontsize=26)
 plt.show()
 
 
-# In[115]:
+# In[60]:
 
 
 import seaborn as sns
@@ -184,7 +184,7 @@ plt.title(title, fontsize=26)
 plt.show()
 
 
-# In[116]:
+# In[61]:
 
 
 import seaborn as sns
@@ -201,7 +201,7 @@ plt.title(title, fontsize=26)
 plt.show()
 
 
-# In[117]:
+# In[62]:
 
 
 import seaborn as sns
@@ -223,7 +223,7 @@ plt.show()
 # # Comparing the Petal Width and Petal Length across the different Species 
 # Using different colours it is clear that the three species have very different petal sizes.
 
-# In[79]:
+# In[63]:
 
 
 from bokeh.plotting import figure, output_file, show
@@ -241,7 +241,7 @@ colors = [colormap[x] for x in iris_data['species']]
 p = figure(title = "Petal Width and Petal Length")
 p.xaxis.axis_label = 'Petal Length'
 p.yaxis.axis_label = 'Petal Width'
-p.legend
+p.legend.location = "top_left"
 
 p.diamond(iris_data["petal_length"], iris_data["petal_width"],color=colors, fill_alpha=0.2, size=10)
 
@@ -251,7 +251,7 @@ show(p)
 
 # # Comparing the Petal Width and Sepal Length across the different Species 
 
-# In[78]:
+# In[64]:
 
 
 from bokeh.plotting import figure, output_file, show
@@ -277,7 +277,7 @@ show(p)
 # # Pairplot
 # Looking for relationships between variables across multiple dimensions
 
-# In[68]:
+# In[65]:
 
 
 # My favourite colors = palettes GnBu_d
@@ -296,7 +296,7 @@ plt.show()
 
 
 
-# In[69]:
+# In[66]:
 
 
 #setting the background color
@@ -312,7 +312,7 @@ import matplotlib.pyplot as plt
 plt.show()
 
 
-# In[71]:
+# In[67]:
 
 
 # plotting regression and confidence intervals
@@ -329,7 +329,7 @@ plt.show()
 #strong relationship between petal length and petal width and petal length and sepal length
 
 
-# In[452]:
+# In[68]:
 
 
 import seaborn as sns
@@ -350,7 +350,7 @@ import matplotlib.pyplot as plt
 plt.show()
 
 
-# In[75]:
+# In[69]:
 
 
 import seaborn as sns
@@ -368,7 +368,7 @@ import matplotlib.pyplot as plt
 plt.show()
 
 
-# In[76]:
+# In[70]:
 
 
 import seaborn as sns
@@ -385,7 +385,7 @@ import matplotlib.pyplot as plt
 plt.show()
 
 
-# In[77]:
+# In[71]:
 
 
 import matplotlib.pyplot as plt
@@ -398,14 +398,14 @@ plt.show()
 # 
 # The iris data set already exisits in sklearn so I'm going to reuse it.
 
-# In[482]:
+# In[109]:
 
 
 # import load_iris function from datasets module
 from sklearn.datasets import load_iris
 
 
-# In[483]:
+# In[110]:
 
 
 # save "bunch" object containing iris dataset and its attributes
@@ -413,14 +413,14 @@ iris = load_iris()
 type(iris)
 
 
-# In[523]:
+# In[111]:
 
 
 # print the iris data
 print(iris.data)
 
 
-# In[491]:
+# In[112]:
 
 
 # print integers representing the species of each observation
@@ -433,14 +433,39 @@ print(iris.target_names)
 print(iris.feature_names)
 
 
-# In[493]:
+# In[113]:
+
+
+from sklearn.datasets import load_iris
+iris = load_iris()
+
+from matplotlib import pyplot as plt
+
+# The indices of the features that we are plotting
+x_index = 0
+y_index = 1
+
+# this formatter will label the colorbar with the correct target names
+formatter = plt.FuncFormatter(lambda i, *args: iris.target_names[int(i)])
+
+plt.figure(figsize=(5, 4))
+plt.scatter(iris.data[:, x_index], iris.data[:, y_index], c=iris.target)
+plt.colorbar(ticks=[0, 1, 2], format=formatter)
+plt.xlabel(iris.feature_names[x_index])
+plt.ylabel(iris.feature_names[y_index])
+
+plt.tight_layout()
+plt.show()
+
+
+# In[114]:
 
 
 # print the names of the four features
 print(iris.target.shape)
 
 
-# In[497]:
+# In[115]:
 
 
 # store feature matrix in "X"
@@ -455,27 +480,38 @@ print(y.shape)
 print(np.unique(y))
 
 
-# In[499]:
+# Using the powerful classification algorithm called K-Nearest-Neighbors (KNN). KNN falls in the supervised learning family of algorithms. 
+
+# In[116]:
 
 
+# loading library
 from sklearn.neighbors import KNeighborsClassifier
+
+# instantiate learning model (k = 1)
 knn = KNeighborsClassifier(n_neighbors=1)
+
 print(knn)
 
 
-# In[500]:
+# In[117]:
 
 
+# fitting the model
 knn.fit(x, y)
 
 
-# In[501]:
+# In[118]:
 
 
-knn.predict([[3, 5, 4, 2]])
+# What kind of iris has 3cm x 5cm sepal and 4cm x 2cm petal?
+
+result = knn.predict([[3, 5, 4, 2]])
+
+print(iris.target_names[result])
 
 
-# In[502]:
+# In[119]:
 
 
 X_new = [[3, 5, 4, 2], [5, 4, 3, 2]]
@@ -484,33 +520,42 @@ X_new = [[3, 5, 4, 2], [5, 4, 3, 2]]
 knn.predict(X_new)
 
 
-# In[503]:
+# In[88]:
 
 
-# instantiate the model (using the value K=5)
-knn = KNeighborsClassifier(n_neighbors=5)
+import numpy as np
+from matplotlib import pyplot as plt
+from sklearn import neighbors, datasets
+from matplotlib.colors import ListedColormap
 
-# fit the model with data
+# Create color maps for 3-class classification problem, as with iris
+cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF'])
+cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF'])
+
+iris = datasets.load_iris()
+X = iris.data[:, :2]  # we only take the first two features. We could
+                    # avoid this ugly slicing by using a two-dim dataset
+y = iris.target
+
+knn = neighbors.KNeighborsClassifier(n_neighbors=1)
 knn.fit(X, y)
 
-# predict the response for new observations
-knn.predict(X_new)
+x_min, x_max = X[:, 0].min() - .1, X[:, 0].max() + .1
+y_min, y_max = X[:, 1].min() - .1, X[:, 1].max() + .1
+xx, yy = np.meshgrid(np.linspace(x_min, x_max, 100),
+                        np.linspace(y_min, y_max, 100))
+Z = knn.predict(np.c_[xx.ravel(), yy.ravel()])
 
+Z = Z.reshape(xx.shape)
+plt.figure()
+plt.pcolormesh(xx, yy, Z, cmap=cmap_light)
 
-# In[504]:
-
-
-# import the class
-from sklearn.linear_model import LogisticRegression
-
-# instantiate the model (using the default parameters)
-logreg = LogisticRegression()
-
-# fit the model with data
-logreg.fit(X, y)
-
-# predict the response for new observations
-logreg.predict(X_new)
+# Plot also the training points
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold)
+plt.xlabel('sepal length (cm)')
+plt.ylabel('sepal width (cm)')
+plt.axis('tight')
+plt.show()
 
 
 # # References
@@ -559,6 +604,8 @@ logreg.predict(X_new)
 # 
 # Machine Learning Tutorial
 # http://scikit-learn.org/stable/tutorial/basic/tutorial.html
+# 
+# https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/
 # 
 # https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
 # 
