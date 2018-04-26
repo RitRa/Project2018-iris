@@ -29,20 +29,54 @@ Seaborn is a Python visualization library based on matplotlib. It provides a hig
 
 I also used the Jupyter Notebook for this project. 
 
+```
+import pandas as pd
+import numpy as np
+import seaborn as sns
+```
+
 ## Data Import
 Import the iris.csv using the panda library and examine first few rows of data
 
+```
+iris_data = pd.read_csv('assets/iris.csv')
+iris_data.columns = ['sepal_length', 'sepal_width' , 'petal_length', 'petal_width', 'species']
+
+#you can specific the number to show here
+iris_data.head(10)
+```
+
 ## Discovering the Shape of the table
 Find out what the size of rows and columns in the table
+```
+iris_data.shape
+```
 
 ## Find out unique classification/type of iris flower and the amount
+```
+iris_data['species'].unique()
+print(iris_data.groupby('species').size())
+```
 'Iris-setosa', 'Iris-versicolor', 'Iris-virginica'
 
 ## Investigating the data
 Min, Max, Mean, Median and Standard Deviation
+```
+iris_data.min()
+iris_data.max()
+iris_data.mean()
+iris_data.median()
+iris_data.std()
+```
 
 ## Summary Statistics Table
 This statistics table is a much nicer, cleaner way to present the data. We can see there is huge range in the size of the Sepal Length and Petal Length. We will use box plots and scatter plots to see if the size is related to the species of Iris.
+
+```
+summary = iris_data.describe()
+summary = summary.transpose()
+summary.head()
+```
 
 ## Boxplots
 The boxplot is a quick way of visually summarizing one or more groups of numerical data through their quartiles. Comparing the distributions of:
@@ -94,12 +128,44 @@ Petal Width
 ![Simple Boxplot](assets/Figure_1.png)
 
 # Machine Learning using scikit-learn
+Using the Scikit-learn library we can perform machine learning on the dataset. As this is my first step into machine learning I have heavily relied on the tutorials below for help.
+
+# What is Scikit-learn?
+It is a free machine learning library for python. It features various classification, regression and clustering algorithms. Built on Numpy and Scipy. For this project, I will use the powerful classification algorithm, K-Nearest-Neighbors (KNN) to perform supervised learning.
+
+As the dataset is already import into scikit-learn, I will reuse it. Here are the steps:
+
+*	Import Data
+*	Investigate the Data
+*	Perform supervised Learning with K-Nearest-Neighbors (KNN)
+*	Fitting the model
+*	Predict the response
+
+
+This data is four-dimensional, but we can visualize two of the dimensions at a time using a scatter plot:
+
+![four-dimensional](assets/sklearn.png)
+
+## Using supervised learning with K-Nearest Neighbours(KNN), we are able to ask the algorithm "Based on these measurements, what is the species?"
+
+Question: What kind of iris has 3cm x 5cm sepal and 4cm x 2cm petal?
+
+```
+knn.predict([[3, 5, 4, 2]])
+```
+
+answer:['virginica']
+
+
+A plot of the sepal space and the prediction of the KNN
+![kNN](assets/kkn.png)
 
 
 # References
 Background info
 https://en.wikipedia.org/wiki/Iris_flower_data_set
 https://archive.ics.uci.edu/ml/datasets/iris
+
 
 Summary values
 https://stackoverflow.com/questions/33889310/r-summary-equivalent-in-numpy
@@ -125,7 +191,6 @@ http://www.scipy-lectures.org/packages/statistics/index.html#statistics
 Python - IRIS Data visualization and explanation
 https://www.kaggle.com/abhishekkrg/python-iris-data-visualization-and-explanation
 
-
 Visualization with Seaborn (Python)
 https://www.kaggle.com/rahulm7/visualization-with-seaborn-python
 
@@ -142,6 +207,10 @@ http://holoviews.org/gallery/demos/bokeh/boxplot_chart.html
 
 Machine Learning Tutorial
 http://scikit-learn.org/stable/tutorial/basic/tutorial.html
+
+http://www.scipy-lectures.org/packages/scikit-learn/index.html
+
+https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/
 
 https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
 
