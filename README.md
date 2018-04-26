@@ -78,6 +78,8 @@ summary = summary.transpose()
 summary.head()
 ```
 
+![summary stats](assets/table.png)
+
 ## Boxplots
 The boxplot is a quick way of visually summarizing one or more groups of numerical data through their quartiles. Comparing the distributions of:
 
